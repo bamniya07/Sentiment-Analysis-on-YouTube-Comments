@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YouTube Comments Analyzer</title>
+    <!-- <link rel="stylesheet" href="index.css" /> -->
+
+    <style>
+        *{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f1f1f1;
+}
+
+.logo {
+  width: 25vw;
+  margin: auto;
+  margin-top: 3rem;
+
+  margin-bottom: 3rem;
+  height: 15vh;
+  
+}
+.logo img{
+  height: 100%;
+  width: 100%;
+}
+
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 1rem 0;
+  text-align: center;
+  max-width: 50vw;
+  margin: auto;
+  border-radius: 10px;
+}
+
+h1 {
+  margin: 0;
+}
+
+.container {
+  max-width: 50vw;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+#commentForm{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+label {
+  font-weight: bold;
+  font-size: 1.4rem;
+}
+
+input[type="text"],
+textarea {
+  width: 75%;
+  padding: 1.3rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-sizing: border-box;
+  font-size: 1.4rem;
+}
+
+.btn-analyze {
+  padding: 1.2rem 2.5rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff;
+  background-color: #333;
+  border: none;
+  border-radius: 50px;
+  box-shadow: 0px 2px 4px rgba(179, 81, 20, 0.2);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+ 
+.btn-analyze:hover {
+  background-color: #555; 
+}
+
+footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+ /* Animation */
+ @keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+header,
+.container {
+  animation: fadeIn 1s ease-in-out;
+}
+
+/* Responsiveness */
+@media only screen and (max-width: 768px) {
+  .logo{
+    width: 35vw;
+    height: 15vh;
+   }
+   header, .container{
+     max-width: 80vw;
+   }
+  
+}
+
+@media only screen and (max-width: 480px) {
+    .logo{
+     width: 60vw;
+     height: 8vh;
+    }
+    header{
+      font-size: 0.8rem;
+    }
+    header, .container{
+      max-width: 90vw;
+    }
+    #commentForm{
+      flex-direction: column;
+    }
+    input[type="text"],
+    textarea {
+  width: 95%;
+  }
+}
+
+    </style>
+  </head>
+  <body>
+    <div class="logo">
+      <img src="{{ url_for('static', filename='ytlogo1.jpg')}}" alt="YouTube Logo" />
+    </div>
+    <header>
+      <h1>YouTube Comments Analyzer</h1>
+    </header>
+
+    <div class="container">
+      <form id="commentForm" method="POST" action="/result">
+        <!-- <label for="videoUrl">YouTube Video URL:</label> -->
+        <input
+          type="text"
+          id=  "video_link"
+          name="video_link"
+          placeholder="Enter the YouTube video URL"
+        />
+        <button type="submit" class="btn-analyze">Analyze</button>
+      </form>
+    </div>
+
+    <footer>&copy; 2024 YouTube Comments Analyzer</footer>
+  </body>
+</html>

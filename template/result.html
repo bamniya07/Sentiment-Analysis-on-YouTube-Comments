@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>YouTube Comment Sentiment Analysis</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+    }
+
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 0.1rem 0;
+      text-align: center;
+      width: 100vw;
+      margin: auto;
+      position: fixed;
+      top: 0;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .container {
+      max-width: 70vw;
+      margin: 3rem auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    .result-summary {
+      width: 50vw;
+      margin-bottom: 20px;
+    }
+
+    .result-summary h2 {
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    .result-summary p {
+      margin: 5px 0;
+    }
+
+    .total_comments {
+      background-color: #333;
+      color: #fff;
+      padding: 0.5rem;
+      font-weight: bold;
+    }
+
+    .positive {
+      background-color: #00f;
+      color: #fff;
+      padding: 0.5rem;
+      font-weight: bold;
+    }
+
+    .negative {
+      background-color: red;
+      color: #fff;
+      padding: 0.5rem;
+      font-weight: bold;
+    }
+
+    .neutral {
+      background-color: yellow;
+      color: black;
+      padding: 0.5rem;
+      font-weight: bold;
+    }
+
+    .details {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .comments,
+    .sentiments {
+      width: 95%;
+      margin-bottom: 20px;
+    }
+
+    .comment {
+      background-color: #f9f9f9;
+      border: 1px solid #e6e6e6;
+      border-radius: 6px;
+      padding: 10px;
+      margin-bottom: 10px;
+      animation: fadeIn 0.8s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .comment .text {
+      margin-bottom: 5px;
+      color: #333;
+    }
+
+    .comment .index {
+      font-weight: bold;
+      color: #4caf50;
+      /* Green for positive sentiment */
+    }
+
+    footer {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 10px 0;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+
+    @media only screen and (max-width: 768px) {
+
+      .comments,
+      .sentiments {
+        width: 100%;
+      }
+    }
+
+    /* Previous CSS code... */
+
+    .comment .index {
+      font-weight: bold;
+    }
+
+    .comment.positive .index {
+      color: #4caf50;
+      /* Green for positive sentiment */
+    }
+
+    .comment.positive:hover {
+      background-color: #4caf50;
+      color: #fff;
+    }
+
+    .comment.neutral .index {
+      color: #ffeb3b;
+      /* Yellow for neutral sentiment */
+    }
+
+    .comment.neutral:hover {
+      background-color: #ffeb3b;
+      color: #000;
+    }
+
+    .comment.negative .index {
+      color: #f44336;
+      /* Red for negative sentiment */
+    }
+
+    .comment.negative:hover {
+      background-color: #f44336;
+      color: #fff;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>YouTube Comments Sentiment Analysis</h1>
+  </header>
+  <div class="container">
+    <div class="result-summary">
+
+
+      <h2>Analysis Summary</h2>
+      <p class="total_comments">
+        Total comments analyzed: {{ total_comments }}
+      </p>
+      <p class="positive">
+        Positive comments: {{ positive_comments }} ({{ positive_percentage }}%)
+      </p>
+      <p class="neutral">
+        Neutral comments: {{ neutral_comments }} ({{ neutral_percentage }}%)
+      </p>
+      <p class="negative">
+        Negative comments: {{ negative_comments }} ({{ negative_percentage }}%)
+      </p>
+    </div>
+
+
+    <div class="details">
+      <div class="comments">
+        <h2>Detailed Results</h2>
+        {% for c in comments %}
+        <div
+          class="comment {% if sentiments[loop.index-1] == 'Positive' %}positive{% elif sentiments[loop.index-1] == 'Neutral' %}neutral{% else %}negative{% endif %}">
+          <div class="text">{{ c }}</div>
+          <div class="index">{{ sentiments[loop.index-1] }}</div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  <footer>&copy; 2024 YouTube Comments Analyzer</footer>
+</body>
+
+</html>
