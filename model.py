@@ -14,7 +14,7 @@ data = pd.read_csv("Dataset.csv")
 data1 = data.drop(['Comment_ID', 'Reply_Count', 'Like_Count', 'Date', 'VidId', 'user_ID'], axis=1)
 # print(data1)
 
-#   nltk.download('vader_lexicon')
+nltk.download('vader_lexicon')
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
 def TextBlob(text):
@@ -45,7 +45,7 @@ def TextBlob(text):
 
 data2=TextBlob(data1)
 
-#   nltk.download('stopwords')
+nltk.download('stopwords')
 stop_words = stopwords.words('english')
 lzr = WordNetLemmatizer()
 
@@ -75,9 +75,9 @@ def text_processing(text):
 
     return text
 
-# nltk.download('omw-1.4')
-# nltk.download('punkt')
-# nltk.download('wordnet')
+nltk.download('omw-1.4')
+nltk.download('punkt')
+nltk.download('wordnet')
 
 def processdata(data2):
     # Assuming 'data2' contains the 'Comments' column
