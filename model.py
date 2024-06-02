@@ -10,7 +10,7 @@ import pickle
 import pandas as pd
 
 
-data = pd.read_csv(r'Dataset.csv')
+data = pd.read_csv("Dataset.csv")
 data1 = data.drop(['Comment_ID', 'Reply_Count', 'Like_Count', 'Date', 'VidId', 'user_ID'], axis=1)
 # print(data1)
 
