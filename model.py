@@ -5,6 +5,7 @@ from nltk.stem import WordNetLemmatizer
 from sklearn.feature_extraction.text import CountVectorizer
 from nltk.corpus import stopwords
 from string import punctuation
+import nltk
 import re
 import pickle
 import pandas as pd
