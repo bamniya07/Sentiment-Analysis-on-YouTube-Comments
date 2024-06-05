@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify, render_template
 from model import TextBlob, text_processing
 import pickle
+import nltk
 from googleapiclient.discovery import build
 #from oauth2client.tools import argparser
 
